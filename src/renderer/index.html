@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Générateur de Cartes Audiocontes</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+  <script src="script.js"></script>
+</head>
+<body>
+<div class="app">
+
+  <div class="titlebar">
+    <div class="tbar-left">
+      <div class="tbar-logo">
+        💾
+      </div>
+      <span class="tbar-title">Générateur de Cartes Audiocontes</span>
+    </div>
+    <div class="tbar-btns">
+      <button class="tbar-btn" onclick="api.minimize()">−</button>
+      <button class="tbar-btn x" onclick="api.close()">×</button>
+    </div>
+  </div>
+
+  <div class="pages">
+
+    <div class="page" id="pg-select">
+      <div class="scroll">
+
+        <div id="alert-sel" class="alert err"></div>
+
+        <div class="sec">
+          <div class="sec-hd">
+            <span class="sec-num">01</span>
+            <span class="sec-title">Carte SD</span>
+            <div class="sec-line"></div>
+          </div>
+          <div class="sd-row">
+            <select id="sd-select" style="flex:1"></select>
+            <button class="btn-icon" onclick="refreshSD()" title="Actualiser">↻</button>
+          </div>
+        </div>
+
+        <div class="sec">
+          <div class="sec-hd">
+            <span class="sec-num">02</span>
+            <span class="sec-title">Langue</span>
+            <div class="sec-line"></div>
+          </div>
+          <div class="pills" id="lang-pills"><!-- généré dynamiquement --></div>
+        </div>
+
+        <!-- Type -->
+        <div class="sec">
+          <div class="sec-hd">
+            <span class="sec-num">03</span>
+            <span class="sec-title">Type de carte</span>
+            <div class="sec-line"></div>
+          </div>
+          <div class="radio-grid" id="ctype-grid"><!-- généré dynamiquement --></div>
+          <div id="avail-hint" style="font-size:11px;color:var(--txm);margin-top:8px;min-height:16px;"></div>
+        </div>
+
+        <button class="btn-main" id="start-btn" onclick="startPipeline()">
+          ▶&nbsp; Créer la carte SD
+        </button>
+      </div>
+
+      <div class="footer">
+        <span>Version 2.0</span>
+        <span>·</span>
+        <span>Fait avec <span class="heart">♥</span> par Zarhkoh</span>
+        <span>·</span>
+        <a id="footer-link-sel" onclick="openPaypal()">Faire un don</a>
+      </div>
+    </div>
+
+    <div class="page hidden" id="pg-prog">
+
+      <div class="prog-header">
+        <div class="prog-title" id="prog-title">Création en cours…</div>
+        <div class="prog-subtitle" id="prog-subtitle">Étape 1 / 7</div>
+      </div>
+
+      <!-- Barre totale -->
+      <div class="total-bar-wrap">
+        <div class="total-label">
+          <span>Progression totale</span>
+          <span id="total-pct">0%</span>
+        </div>
+        <div class="bar-bg"><div class="bar-fill" id="total-bar"></div></div>
+      </div>
+
+      <!-- Liste étapes -->
+      <div class="steps-list" id="steps-list">
+        <!-- générée en JS -->
+      </div>
+
+      <!-- Succès -->
+      <div class="success-screen" id="success-screen" style="display:none">
+        <div class="success-icon"><img src="./assets/images/logo.png"></div>
+        <div class="success-title">Carte SD créée !</div>
+        <div class="success-msg" id="success-msg">
+          Votre carte SD peut maintenant être éjectée.<br>
+          Vous pouvez maintenant fermer ce logiciel.<br><br>
+          N'hésitez pas à me soutenir via PayPal en cliquant sur le lien ci-dessous, merci !
+        </div>
+        <button class="btn-paypal" onclick="openPaypal()">
+          ♥️&nbsp; Soutenez mon travail sur PayPal
+        </button>
+      </div>
+
+      <!-- Erreur -->
+      <div id="err-screen" style="display:none;padding:16px 24px">
+        <div class="alert err show" id="err-msg"></div>
+        <button class="btn-main" onclick="goBack()">← Retour</button>
+      </div>
+
+      <div class="footer" id="footer-prog" style="display:none">
+        <span>Version 2.0</span>
+        <span>·</span>
+        <span>Fait avec <span class="heart">♥</span> par Zarhkoh</span>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div id="confirm-overlay" class="confirm-overlay hidden">
+  <div class="confirm-modal">
+    <div class="confirm-title">⚠️ Attention</div>
+    <div class="confirm-text" id="confirm-text">
+      Toutes les données de votre carte SD seront effacées pour créer la carte.
+      Êtes-vous sûr de vouloir continuer ?
+    </div>
+    <div class="confirm-actions">
+      <button class="btn-secondary" id="confirm-cancel">Annuler</button>
+      <button class="btn-danger" id="confirm-ok">Oui, formater</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
