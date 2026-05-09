@@ -239,32 +239,6 @@ select option {
     gap: 8px;
 }
 
-.sd-info {
-    margin-top: 10px;
-    display: none;
-}
-
-.sd-info-bar-bg {
-    background: var(--surf2);
-    border-radius: 100px;
-    height: 6px;
-    overflow: hidden;
-    margin-bottom: 6px;
-}
-
-.sd-info-bar-fill {
-    height: 100%;
-    background: var(--acc);
-    border-radius: 100px;
-    transition: width .3s ease;
-    width: 0;
-}
-
-.sd-info-text {
-    font-size: 11px;
-    color: var(--txd);
-    text-align: right;
-}
 
 .btn-icon {
     background: var(--surf2);
