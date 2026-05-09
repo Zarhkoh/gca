@@ -1,75 +1,24 @@
 {
-  "name": "GCA",
+  "name": "gca",
   "version": "2.0.0",
+  "description": "Generateur de cartes SD pour les enceintes AudioContes Disney",
   "author": {
     "name": "Zarhkoh",
     "email": "GCA@navillus.kim"
   },
-  "description": "Generateur de cartes SD pour les enceintes AudioContes Disney",
-  "main": "src/main.js",
   "scripts": {
-    "start": "electron .",
+    "tauri": "tauri",
+    "dev": "tauri dev",
+    "build": "tauri build",
     "test": "echo \"No tests specified\" && exit 0",
-    "build:win": "electron-builder --win --x64 --publish never",
-    "build:mac": "electron-builder --mac --universal --publish never",
-    "build:linux": "electron-builder --linux --x64 --publish never"
+    "build:win": "tauri build --target x86_64-pc-windows-msvc",
+    "build:mac": "tauri build --target aarch64-apple-darwin",
+    "build:linux": "tauri build --target x86_64-unknown-linux-gnu"
   },
   "dependencies": {
-    "extract-zip": "^2.0.1",
-    "megajs": "^1.3.10"
+    "@tauri-apps/api": "^2.0.0"
   },
   "devDependencies": {
-    "electron": "^41.3.0",
-    "electron-builder": "^26.8.1"
-  },
-  "build": {
-    "appId": "com.gca.app",
-    "productName": "GCA",
-    "directories": {
-      "output": "dist"
-    },
-    "compression": "maximum",
-    "files": [
-      "src/**/*",
-      "assets/icon.*",
-      "package.json"
-    ],
-    "win": {
-      "target": [
-        {
-          "target": "portable",
-          "arch": [
-            "x64"
-          ]
-        }
-      ],
-      "requestedExecutionLevel": "requireAdministrator",
-      "icon": "assets/icon.ico"
-    },
-    "portable": {
-      "requestExecutionLevel": "admin"
-    },
-    "mac": {
-      "target": [
-        {
-          "target": "dmg",
-          "arch": [
-            "universal"
-          ]
-        }
-      ],
-      "icon": "assets/icon.icns"
-    },
-    "linux": {
-      "target": [
-        {
-          "target": "AppImage",
-          "arch": [
-            "x64"
-          ]
-        }
-      ],
-      "icon": "assets/icon.png"
-    }
+    "@tauri-apps/cli": "^2.0.0"
   }
 }

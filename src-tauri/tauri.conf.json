@@ -1,0 +1,40 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "GCA",
+  "version": "2.0.0",
+  "identifier": "com.gca.generator",
+  "build": {
+    "frontendDist": "../src/renderer",
+    "devUrl": "tauri://localhost"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Générateur de Cartes Audiocontes",
+        "width": 580,
+        "height": 600,
+        "minWidth": 560,
+        "minHeight": 580,
+        "resizable": true,
+        "decorations": false,
+        "transparent": true,
+        "backgroundColor": "#0C0E13"
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self' 'unsafe-eval' 'unsafe-inline' tauri://localhost"
+    },
+    "withGlobalTauri": true
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
+  }
+}

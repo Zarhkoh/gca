@@ -15,6 +15,7 @@ const STEPS = [
 
 let paypalUrl = 'https://paypal.me/Zarhkoh'
 let langues = {}   // reçu depuis main.js via props
+let currentDrives = []
 
     ; (async () => {
         const p = await api.getProps()
@@ -102,24 +103,26 @@ function buildStepsList() {
 
 async function refreshSD() {
     const sel = document.getElementById('sd-select')
-    const drives = await api.listSD()
+    currentDrives = await api.listSD()
     sel.innerHTML = ''
-    if (!drives.length) {
+    if (!currentDrives.length) {
         sel.innerHTML = '<option value="">Aucune carte SD détectée</option>'
         return
     }
-    drives.forEach(d => {
+    currentDrives.forEach(d => {
         const o = document.createElement('option')
         o.value = d.path
-        // construit l'affichage : lettre (Windows) ou basename, nom du volume, et used/total si dispo
-        let labelParts = []
-        if (d.letter) labelParts.push(d.letter + (d.letter.length === 1 ? ':' : ''))
-        if (d.label) labelParts.push(d.label)
-        if (typeof d.used === 'number' && d.total) {
-            labelParts.push(`${humanSize(d.used)} / ${humanSize(d.total)}`)
+
+        let label = ''
+        if (d.letter) label += d.letter + (d.letter.length === 1 ? ': ' : ' ')
+        if (d.label) label += d.label + ' '
+
+        if (d.total) {
+            const used = d.used || 0
+            label += `${humanSize(used)} / ${humanSize(d.total)}`
         }
-        const text = labelParts.length ? labelParts.join(' — ') : (d.display || d.path)
-        o.textContent = text
+
+        o.textContent = label.trim() || d.display || d.path
         sel.appendChild(o)
     })
 }
