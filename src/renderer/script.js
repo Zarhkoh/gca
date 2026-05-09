@@ -15,6 +15,7 @@ const STEPS = [
 
 let paypalUrl = 'https://paypal.me/Zarhkoh'
 let langues = {}   // reçu depuis main.js via props
+let currentDrives = []
 
     ; (async () => {
         const p = await api.getProps()
@@ -102,26 +103,43 @@ function buildStepsList() {
 
 async function refreshSD() {
     const sel = document.getElementById('sd-select')
-    const drives = await api.listSD()
+    currentDrives = await api.listSD()
     sel.innerHTML = ''
-    if (!drives.length) {
+    if (!currentDrives.length) {
         sel.innerHTML = '<option value="">Aucune carte SD détectée</option>'
+        updateSDInfo()
         return
     }
-    drives.forEach(d => {
+    currentDrives.forEach(d => {
         const o = document.createElement('option')
         o.value = d.path
         // construit l'affichage : lettre (Windows) ou basename, nom du volume, et used/total si dispo
         let labelParts = []
         if (d.letter) labelParts.push(d.letter + (d.letter.length === 1 ? ':' : ''))
         if (d.label) labelParts.push(d.label)
-        if (typeof d.used === 'number' && d.total) {
-            labelParts.push(`${humanSize(d.used)} / ${humanSize(d.total)}`)
-        }
         const text = labelParts.length ? labelParts.join(' — ') : (d.display || d.path)
         o.textContent = text
         sel.appendChild(o)
     })
+    updateSDInfo()
+}
+
+function updateSDInfo() {
+    const sel = document.getElementById('sd-select')
+    const infoWrap = document.getElementById('sd-info')
+    const bar = document.getElementById('sd-info-bar')
+    const txt = document.getElementById('sd-info-text')
+
+    const drive = currentDrives.find(d => d.path === sel.value)
+    if (!drive || !drive.total) {
+        infoWrap.style.display = 'none'
+        return
+    }
+
+    infoWrap.style.display = 'block'
+    const pct = Math.round((drive.used / drive.total) * 100)
+    bar.style.width = pct + '%'
+    txt.textContent = `${humanSize(drive.used)} utilisés sur ${humanSize(drive.total)} (${pct}%)`
 }
 
 

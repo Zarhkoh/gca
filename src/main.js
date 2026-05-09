@@ -2,7 +2,7 @@
  * main.js — Processus principal Electron
  */
 
-const { app, BrowserWindow, ipcMain, shell } = require('electron')
+const { app, BrowserWindow, ipcMain, shell, nativeTheme } = require('electron')
 const path = require('path')
 const fs = require('fs')
 const os = require('os')
@@ -24,7 +24,7 @@ function createWindow() {
     resizable: true,
     titleBarStyle: process.platform === 'darwin' ? 'hiddenInset' : 'hidden',
     frame: false,
-    backgroundColor: '#0C0E13',
+    backgroundColor: nativeTheme.shouldUseDarkColors ? '#0C0E13' : '#F4F7FB',
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,

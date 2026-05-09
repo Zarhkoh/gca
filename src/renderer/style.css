@@ -26,6 +26,27 @@
     --r: 10px;
 }
 
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg: #F4F7FB;
+        --surf: #FFFFFF;
+        --surf2: #E9EDF5;
+        --surf3: #DDE2EF;
+        --border: #CDD5E5;
+        --borderdim: #E1E6F0;
+        --acc: #4A7FE6;
+        --acc-glow: rgba(74, 127, 230, .15);
+        --acc-dim: rgba(74, 127, 230, .06);
+        --ok: #27AE60;
+        --ok-dim: rgba(39, 174, 96, .1);
+        --err: #E74C3C;
+        --err-dim: rgba(231, 76, 60, .1);
+        --tx: #1E293B;
+        --txd: #64748B;
+        --txm: #94A3B8;
+    }
+}
+
 html,
 body {
     height: 100%;
@@ -216,6 +237,33 @@ select option {
 .sd-row {
     display: flex;
     gap: 8px;
+}
+
+.sd-info {
+    margin-top: 10px;
+    display: none;
+}
+
+.sd-info-bar-bg {
+    background: var(--surf2);
+    border-radius: 100px;
+    height: 6px;
+    overflow: hidden;
+    margin-bottom: 6px;
+}
+
+.sd-info-bar-fill {
+    height: 100%;
+    background: var(--acc);
+    border-radius: 100px;
+    transition: width .3s ease;
+    width: 0;
+}
+
+.sd-info-text {
+    font-size: 11px;
+    color: var(--txd);
+    text-align: right;
 }
 
 .btn-icon {
@@ -731,14 +779,14 @@ select option {
 }
 
 .confirm-modal {
-    background: #0f121e;
+    background: var(--surf);
     border-radius: 24px;
     padding: 20px 22px 16px;
     max-width: 380px;
     width: calc(100% - 40px);
     box-shadow:
-      0 20px 40px rgba(68, 71, 87, 0.65),
-      0 0 0 1px rgba(241, 233, 255, .8);
+      0 20px 40px rgba(0, 0, 0, 0.25),
+      0 0 0 1px var(--border);
     color: var(--tx);
 }
 
