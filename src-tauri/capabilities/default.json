@@ -6,6 +6,10 @@
     "main"
   ],
   "permissions": [
-    "core:default"
+    "core:default",
+    "get_props",
+    "list_sd",
+    "create_sd",
+    "open_url"
   ]
 }
