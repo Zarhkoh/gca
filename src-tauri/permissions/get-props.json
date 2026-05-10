@@ -1,0 +1,10 @@
+{
+  "$schema": "../gen/schemas/permission-schema.json",
+  "identifier": "allow-get-props",
+  "description": "Permit access to get_props command",
+  "commands": {
+    "allow": [
+      "get_props"
+    ]
+  }
+}

@@ -7,9 +7,9 @@
   ],
   "permissions": [
     "core:default",
-    "get_props",
-    "list_sd",
-    "create_sd",
-    "open_url"
+    "allow-get-props",
+    "allow-list-sd",
+    "allow-create-sd",
+    "allow-open-url"
   ]
 }

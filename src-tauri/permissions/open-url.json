@@ -1,0 +1,10 @@
+{
+  "$schema": "../gen/schemas/permission-schema.json",
+  "identifier": "allow-open-url",
+  "description": "Permit access to open_url command",
+  "commands": {
+    "allow": [
+      "open_url"
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "$schema": "../gen/schemas/permission-schema.json",
+  "identifier": "allow-create-sd",
+  "description": "Permit access to create_sd command",
+  "commands": {
+    "allow": [
+      "create_sd"
+    ]
+  }
+}
