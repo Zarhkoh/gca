@@ -1,0 +1,1 @@
+{"identifier":"allow-gca-commands","commands":{"allow":["get_props","list_sd","create_sd","open_url"]}}
