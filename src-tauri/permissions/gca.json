@@ -1,5 +1,5 @@
 {
-  "identifier": "allow-gca-commands",
+  "identifier": "allow-all",
   "description": "Allow all GCA custom commands",
   "commands": {
     "allow": [
