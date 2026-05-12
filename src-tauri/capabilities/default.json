@@ -7,6 +7,6 @@
   ],
   "permissions": [
     "core:default",
-    "gca:allow-all"
+    "allow-gca-commands"
   ]
 }

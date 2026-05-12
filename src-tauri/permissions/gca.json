@@ -1,12 +1,1 @@
-{
-  "identifier": "allow-all",
-  "description": "Allow all GCA custom commands",
-  "commands": {
-    "allow": [
-      "get_props",
-      "list_sd",
-      "create_sd",
-      "open_url"
-    ]
-  }
-}
+{"identifier":"allow-gca-commands","commands":{"allow":["get_props","list_sd","create_sd","open_url"]}}
