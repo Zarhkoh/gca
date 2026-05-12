@@ -7,9 +7,6 @@
   ],
   "permissions": [
     "core:default",
-    "allow-get-props",
-    "allow-list-sd",
-    "allow-create-sd",
-    "allow-open-url"
+    "allow-gca-commands"
   ]
 }
